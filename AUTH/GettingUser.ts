@@ -2,9 +2,12 @@ import axios from 'axios'
 
 export async function getUser(userID: string) {
   try {
-    const response = await axios.get(`http://localhost:5000/GetUser`, {
-      params: { userID },
-    })
+    const response = await axios.get(
+      `https://octtoppus-backend.vercel.app/GetUser`,
+      {
+        params: { userID },
+      }
+    )
     return response.data
   } catch (error) {
     if (error) {
