@@ -1,11 +1,9 @@
 import axios from 'axios'
 import { InputValues, UserData } from './SignUpInterface'
-
 export const RegisterUser = async (
   inputValues: InputValues
 ): Promise<UserData | void> => {
   const { email, password, Name, Image } = inputValues
-
   try {
     // Create a FormData object
     const formData = new FormData()
@@ -17,13 +15,11 @@ export const RegisterUser = async (
     if (Image) {
       formData.append('image', Image)
     }
-
     // Send the POST request with FormData
     const response = await axios.post<UserData>(
       `http://localhost:5000/api/Auth/register`, // Ensure this is the correct endpoint
       formData
     )
-
     if (response.status === 201) {
       return response.data // Return the UserData object
     }

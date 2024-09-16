@@ -1,12 +1,9 @@
 import axios from 'axios'
-
 import { InputValues, UserData } from './SignUpInterface'
-
 export const LoginUser = async (
   Inputvalue: InputValues
 ): Promise<UserData | void> => {
   const { email, password } = Inputvalue
-
   try {
     const Response = await axios.post<UserData>(
       `http://localhost:5000/api/Auth/Login`,
@@ -15,7 +12,6 @@ export const LoginUser = async (
         password,
       }
     )
-
     if (Response.status === 200) {
       // API responded successfully with user data
       return Response.data

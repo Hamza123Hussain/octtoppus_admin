@@ -5,7 +5,6 @@ export async function getUser(userID: string) {
     const response = await axios.get(`http://localhost:5000/GetUser`, {
       params: { userID },
     })
-    console.log('User data:', response.data)
     return response.data
   } catch (error) {
     if (error) {

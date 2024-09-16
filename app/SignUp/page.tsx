@@ -2,7 +2,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import Image from 'next/image'
 import { RegisterUser } from '@/AUTH/RegisterUser'
-
+import { useRouter } from 'next/navigation'
 export default function SignUp() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null) // Update state type to File | null
   const [inputValues, setInputValues] = useState({
@@ -10,14 +10,13 @@ export default function SignUp() {
     email: '',
     password: '',
   })
-
+  const Router = useRouter()
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
       setSelectedImage(file) // Store the file directly
     }
   }
-
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setInputValues((prevValues) => ({
@@ -25,7 +24,6 @@ export default function SignUp() {
       [name]: value,
     }))
   }
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (selectedImage) {
@@ -34,25 +32,20 @@ export default function SignUp() {
       formData.append('password', inputValues.password)
       formData.append('Name', inputValues.username)
       formData.append('Image', selectedImage)
-
       const userData = await RegisterUser({
         email: inputValues.email,
         password: inputValues.password,
         Name: inputValues.username,
         Image: selectedImage,
       })
-
       if (userData) {
-        console.log('User registered successfully:', userData)
-        // Handle post-registration logic, like redirecting or showing a message
+        Router.push('/Login')
       }
     }
   }
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
-        {/* Logo Section */}
         <div className="flex justify-start mb-6">
           <Image
             src="/logo.png"
@@ -62,7 +55,6 @@ export default function SignUp() {
             className="max-w-full h-auto"
           />
         </div>
-
         <h2 className="text-white text-xl mb-4 text-left">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -76,7 +68,6 @@ export default function SignUp() {
               required
             />
           </div>
-
           <div className="mb-4">
             <input
               type="email"
@@ -88,7 +79,6 @@ export default function SignUp() {
               required
             />
           </div>
-
           <div className="mb-4">
             <input
               type="password"
@@ -100,7 +90,6 @@ export default function SignUp() {
               required
             />
           </div>
-
           <div className="mb-4">
             <label className="block text-white mb-2">
               Upload Profile Image
@@ -112,7 +101,6 @@ export default function SignUp() {
               className="w-full p-2 rounded-lg bg-gray-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
-
           {selectedImage && (
             <div className="flex justify-center mb-4">
               <Image
@@ -124,7 +112,6 @@ export default function SignUp() {
               />
             </div>
           )}
-
           <button
             type="submit"
             className="w-full bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-500 transition duration-300"
@@ -132,7 +119,6 @@ export default function SignUp() {
             Sign Up
           </button>
         </form>
-
         <div className="mt-6 text-center text-white">
           <p>Already have an account?</p>
           <a href="/Login" className="text-purple-400 hover:underline">
