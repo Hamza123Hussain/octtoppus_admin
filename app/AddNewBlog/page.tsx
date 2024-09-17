@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import { AddNewBlog } from '@/BLOG/AddNewBlog'
+import { UserContext } from '@/Context'
+import React, { useContext, useState } from 'react'
 
 const Blog = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const [headerImage, setHeaderImage] = useState<File | null>(null)
+  const context = useContext(UserContext)
+  //   const [headerImage, setHeaderImage] = useState<File | null>(null)
   const [descriptionImage, setDescriptionImage] = useState<File | null>(null)
 
-  const handleHeaderImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setHeaderImage(e.target.files[0])
-    }
-  }
+  //   const handleHeaderImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     if (e.target.files && e.target.files[0]) {
+  //       setHeaderImage(e.target.files[0])
+  //     }
+  //   }
 
   const handleDescriptionImageUpload = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -20,10 +23,22 @@ const Blog = () => {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    // formData.append('text', text)
+    // formData.append('Name', name)
+    // formData.append('title', title)
+    // formData.append('email', email)
+    // formData.append('UserName', userName)
+    // formData.append('UserImage', userImage)
+    const Data = await AddNewBlog(
+      content,
+      context?.userData?.Name ? context?.userData?.Name : '',
+      context?.userData?.email ? context?.userData?.email : '',
+      title,
+      context?.userData?.imageUrl ? context?.userData?.imageUrl : '',
+      descriptionImage
+    )
     e.preventDefault()
-    // Handle form submission logic
-    console.log({ title, content, headerImage, descriptionImage })
   }
 
   return (
@@ -63,7 +78,7 @@ const Blog = () => {
         </div>
 
         {/* Header Image Upload */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <label
             htmlFor="headerImage"
             className="block text-lg font-semibold mb-2"
@@ -77,7 +92,7 @@ const Blog = () => {
             onChange={handleHeaderImageUpload}
             className="w-full p-2 text-white bg-gray-700 rounded-lg"
           />
-        </div>
+        </div> */}
 
         {/* Description Image Upload */}
         <div className="mb-6">
