@@ -4,6 +4,7 @@ import { UserContext } from '@/Context'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import Image from 'next/image'
+import Blog from './AddNewBlog/page'
 export default function Home() {
   const Router = useRouter()
   const context = useContext(UserContext)
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4 sm:p-6 md:p-8">
       <div className="bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <Blog />
         <div className="flex flex-col sm:flex-row items-center mb-4">
           <Image
             src={context?.userData?.imageUrl || '/logo.png'} // Fallback to default image if no user image
