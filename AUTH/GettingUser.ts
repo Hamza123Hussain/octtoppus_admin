@@ -3,7 +3,7 @@ import axios from 'axios'
 export async function getUser(userID: string) {
   try {
     const response = await axios.get(
-      `https://octtoppus-backend.vercel.app/GetUser`,
+      `https://octtoppus-backend-b76z.vercel.app/GetUser`,
       {
         params: { userID },
       }

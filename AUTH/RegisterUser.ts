@@ -17,7 +17,7 @@ export const RegisterUser = async (
     }
     // Send the POST request with FormData
     const response = await axios.post<UserData>(
-      `https://octtoppus-backend.vercel.app/api/Auth/register`, // Ensure this is the correct endpoint
+      `https://octtoppus-backend-b76z.vercel.app/api/Auth/register`, // Ensure this is the correct endpoint
       formData
     )
     if (response.status === 201) {

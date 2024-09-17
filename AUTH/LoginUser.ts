@@ -6,7 +6,7 @@ export const LoginUser = async (
   const { email, password } = Inputvalue
   try {
     const Response = await axios.post<UserData>(
-      `https://octtoppus-backend.vercel.app/api/Auth/Login`,
+      `https://octtoppus-backend-b76z.vercel.app/api/Auth/Login`,
       {
         email,
         password,
