@@ -1,17 +1,14 @@
 'use client'
 import { useState } from 'react'
 import { handlePasswordReset } from '@/AUTH/ResetPass'
-
 export default function PasswordReset() {
   const [email, setEmail] = useState('')
-
   const ResetPass = async () => {
     const Data = await handlePasswordReset(email)
     if (Data) {
       alert('EMAIL HAS BEEN SENT')
     }
   }
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
