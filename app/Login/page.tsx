@@ -5,7 +5,6 @@ import { UserContext } from '@/Context'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChangeEvent, useState, FormEvent, useContext } from 'react'
-
 export default function Login() {
   const [inputValues, setInputValues] = useState<InputValues>({
     email: '',
@@ -13,9 +12,7 @@ export default function Login() {
     Name: '',
     Image: null,
   })
-
   const { setUserData } = useContext(UserContext) || {}
-
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setInputValues((prevValues) => ({
@@ -23,7 +20,6 @@ export default function Login() {
       [name]: value,
     }))
   }
-
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     const userData = await LoginUser(inputValues)
@@ -31,7 +27,6 @@ export default function Login() {
       setUserData(userData)
     }
   }
-
   return (
     <div className="bg-black min-h-screen flex justify-center items-center p-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-md">
