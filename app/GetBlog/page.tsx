@@ -24,7 +24,7 @@ const AllBlogs = () => {
   if (loading) return <Loader />
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="">
       {BlogData.length > 0 ? (
         BlogData.map((element) => (
           <BlogCard key={element.id} element={element} />
