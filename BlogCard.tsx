@@ -11,15 +11,15 @@ const BlogCard = ({ element }: { element: Blog }) => {
         <img
           src={element.HeaderImageURL}
           alt="Header"
-          className="w-full h-64 object-cover"
+          className="w-12 h-64 object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
         <div className="absolute top-4 left-4 flex items-center space-x-3 z-10">
-          <img
+          {/* <img
             src={element.UserImage}
             alt="Author"
             className="w-12 h-12 rounded-full border-4 border-white"
-          />
+          /> */}
           <div className="text-white">
             <h2 className="text-2xl font-bold">{element.Title}</h2>
             <p className="text-sm">{element.CreatedBy}</p>
@@ -33,14 +33,14 @@ const BlogCard = ({ element }: { element: Blog }) => {
         <p className="text-lg">{element.Text}</p>
         {element.BlogImageURLs.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
-            {element.BlogImageURLs.map((image) => (
+            {/* {element.BlogImageURLs.map((image) => (
               <img
                 key={image}
                 src={image}
                 alt="Blog"
                 className="w-32 h-32 object-cover rounded"
               />
-            ))}
+            ))} */}
           </div>
         )}
         {element.Conclusion && (
