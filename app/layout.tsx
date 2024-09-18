@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
         <ContextProvider>
-          <div className=" min-h-screen flex justify-center items-center">
+          <div className=" min-h-screen ">
             <ConditionalLayout>{children}</ConditionalLayout>
           </div>
         </ContextProvider>

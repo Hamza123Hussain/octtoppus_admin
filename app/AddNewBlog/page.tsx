@@ -1,33 +1,36 @@
-import { AddNewBlog } from '@/BLOG/AddNewBlog'
-import { UserContext } from '@/Context'
 import React, { useContext, useState } from 'react'
+import { UserContext } from '@/Context'
+import { ADDBLOG } from '@/BLOG/AddNewBlog'
+import Loader from '@/Loader'
 const AddBlog = () => {
-  const context = useContext(UserContext)
-
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
+  const context = useContext(UserContext)
   const [blogImages, setBlogImages] = useState<FileList | null>(null)
-
-  // Handle file input for multiple images
+  const [loading, setloader] = useState(false)
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBlogImages(event.target.files)
   }
 
-  // Submit form data to backend API
   const handleSubmit = async (event: React.FormEvent) => {
+    setloader(true)
     event.preventDefault()
     if (context?.userData) {
-      const Data = await AddNewBlog(
+      const data = await ADDBLOG(
+        title,
         text,
         context?.userData?.email,
-        title,
         context?.userData?.Name,
         context?.userData?.imageUrl,
         blogImages
       )
-      console.log('DATA IS HERE ', Data)
+      if (data) {
+        alert('New Blog Added')
+        setloader(false)
+      }
     }
   }
+  if (loading) return <Loader />
 
   return (
     <div className="add-blog text-black">
@@ -36,7 +39,6 @@ const AddBlog = () => {
         <div>
           <label>Title</label>
           <input
-            className=" text-black"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
