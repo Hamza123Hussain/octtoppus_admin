@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '@/Context'
 import { ADDBLOG } from '@/BLOG/AddNewBlog'
 import Loader from '@/Loader'
-
 const AddBlog = () => {
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
@@ -11,7 +10,6 @@ const AddBlog = () => {
   const [blogImages, setBlogImages] = useState<FileList | null>(null)
   const [headerImage, setHeaderImage] = useState<File | null>(null) // State for header image
   const [loading, setLoader] = useState(false)
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
     if (event.target.name === 'headerImage') {
@@ -20,7 +18,6 @@ const AddBlog = () => {
       setBlogImages(files)
     }
   }
-
   const handleSubmit = async (event: React.FormEvent) => {
     setLoader(true)
     event.preventDefault()
@@ -37,13 +34,14 @@ const AddBlog = () => {
       )
       if (data) {
         alert('New Blog Added')
+        setText('')
+        setTitle('')
+        setConclusion('')
         setLoader(false)
       }
     }
   }
-
   if (loading) return <Loader />
-
   return (
     <div className="add-blog text-black">
       <h2>Add New Blog</h2>
