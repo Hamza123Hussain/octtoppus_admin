@@ -21,7 +21,6 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4 sm:p-6 md:p-8">
       <div className="bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md">
-        <Blog />
         <div className="flex flex-col sm:flex-row items-center mb-4">
           <Image
             src={context?.userData?.imageUrl || '/logo.png'} // Fallback to default image if no user image
@@ -43,6 +42,7 @@ export default function Home() {
             Sign Out
           </button>
         </div>
+        <Blog />
       </div>
     </div>
   )
