@@ -3,7 +3,7 @@ import React from 'react'
 const Loader = () => {
   return (
     /* From Uiverse.io by JkHuger */
-    <div className="loader flex flex-col min-h-screen ">
+    <div className="loader">
       <div className="square" id="sq1"></div>
       <div className="square" id="sq2"></div>
       <div className="square" id="sq3"></div>
