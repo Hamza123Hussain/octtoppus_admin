@@ -6,7 +6,9 @@ export const ADDBLOG = async (
   email: string,
   Name: string,
   imageUrl: string,
-  blogImages: FileList | null
+  blogImages: FileList | null,
+  headerImage: File | null,
+  conclusion: string
 ) => {
   const formData = new FormData()
   formData.append('title', title)
@@ -14,12 +16,17 @@ export const ADDBLOG = async (
   formData.append('email', email)
   formData.append('UserName', Name)
   formData.append('UserImage', imageUrl)
+  formData.append('conclusion', conclusion) // Add conclusion
+
+  if (headerImage) {
+    formData.append('headerImage', headerImage) // Add header image
+  }
   if (blogImages) {
-    // Append each image file to FormData
     for (let i = 0; i < blogImages.length; i++) {
       formData.append('images', blogImages[i]) // Ensure 'images' matches backend field name
     }
   }
+
   try {
     const response = await axios.post(
       'http://localhost:5000/API/Blog/AddBlog',
