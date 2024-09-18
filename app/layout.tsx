@@ -28,9 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
         <ContextProvider>
-          <div className=" min-h-screen ">
-            <ConditionalLayout>{children}</ConditionalLayout>
-          </div>
+          <ConditionalLayout>{children}</ConditionalLayout>
         </ContextProvider>
       </body>
     </html>
