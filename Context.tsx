@@ -27,21 +27,27 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType | undefined>(undefined)
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
-  // State for user data, initializing from localStorage or null
-  const [userData, setUserData] = useState<UserData | null>(() => {
+  const [userData, setUserData] = useState<UserData | null>(null)
+
+  // Load userData from localStorage on the client side
+  useEffect(() => {
     try {
-      const storedData = localStorage.getItem('userData')
-      return storedData ? JSON.parse(storedData) : null // Initialize with null if no data
+      if (typeof window !== 'undefined') {
+        // Check if localStorage exists (only runs on client side)
+        const storedData = localStorage.getItem('userData')
+        if (storedData) {
+          setUserData(JSON.parse(storedData))
+        }
+      }
     } catch (error) {
-      console.error('Failed to parse userData from localStorage:', error)
-      return null // Fallback to null
+      console.error('Failed to load userData from localStorage:', error)
     }
-  })
+  }, [])
 
   // Effect for saving userData to localStorage
   useEffect(() => {
     try {
-      if (userData) {
+      if (userData && typeof window !== 'undefined') {
         localStorage.setItem('userData', JSON.stringify(userData))
       }
     } catch (error) {
