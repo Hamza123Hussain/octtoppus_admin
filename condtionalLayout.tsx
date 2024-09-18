@@ -32,7 +32,11 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
     return null // You can also return a loading spinner if preferred
   }
 
-  return <main className="flex flex-col text-white">{children}</main>
+  return (
+    <main className="flex flex-col min-h-screen  mx-auto justify-center items-center text-white">
+      {children}
+    </main>
+  )
 }
 
 export default ConditionalLayout
