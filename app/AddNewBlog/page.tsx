@@ -2,18 +2,27 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '@/Context'
 import { ADDBLOG } from '@/BLOG/AddNewBlog'
 import Loader from '@/Loader'
+
 const AddBlog = () => {
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
+  const [conclusion, setConclusion] = useState('') // State for conclusion
   const context = useContext(UserContext)
   const [blogImages, setBlogImages] = useState<FileList | null>(null)
-  const [loading, setloader] = useState(false)
+  const [headerImage, setHeaderImage] = useState<File | null>(null) // State for header image
+  const [loading, setLoader] = useState(false)
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBlogImages(event.target.files)
+    const files = event.target.files
+    if (event.target.name === 'headerImage') {
+      setHeaderImage(files ? files[0] : null)
+    } else {
+      setBlogImages(files)
+    }
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
-    setloader(true)
+    setLoader(true)
     event.preventDefault()
     if (context?.userData) {
       const data = await ADDBLOG(
@@ -22,14 +31,17 @@ const AddBlog = () => {
         context?.userData?.email,
         context?.userData?.Name,
         context?.userData?.imageUrl,
-        blogImages
+        blogImages,
+        headerImage,
+        conclusion
       )
       if (data) {
         alert('New Blog Added')
-        setloader(false)
+        setLoader(false)
       }
     }
   }
+
   if (loading) return <Loader />
 
   return (
@@ -54,11 +66,29 @@ const AddBlog = () => {
           />
         </div>
         <div>
+          <label>Conclusion</label>
+          <textarea
+            value={conclusion}
+            onChange={(e) => setConclusion(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Upload Header Image</label>
+          <input
+            type="file"
+            name="headerImage"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div>
           <label>Upload Blog Images</label>
           <input
             type="file"
             multiple
             accept="image/*"
+            name="blogImages"
             onChange={handleFileChange}
           />
         </div>
