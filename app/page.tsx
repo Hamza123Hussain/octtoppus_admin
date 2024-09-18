@@ -4,7 +4,7 @@ import { UserContext } from '@/Context'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import Image from 'next/image'
-import Blog from './AddNewBlog/page'
+import AllBlogs from './GetBlog/page'
 export default function Home() {
   const Router = useRouter()
   const context = useContext(UserContext)
@@ -42,7 +42,8 @@ export default function Home() {
             Sign Out
           </button>
         </div>
-        <Blog />
+        {/* <Blog /> */}
+        <AllBlogs />
       </div>
     </div>
   )
