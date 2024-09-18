@@ -6,7 +6,7 @@ export const AddNewBlog = async (
   title: string,
   userName: string,
   userImage: string,
-  blogImage: File | null
+  blogImages: FileList | null
 ) => {
   const formData = new FormData()
   formData.append('text', text)
@@ -14,15 +14,26 @@ export const AddNewBlog = async (
   formData.append('email', email)
   formData.append('UserName', userName)
   formData.append('UserImage', userImage) // Optional if user image is preloaded
-  if (blogImage) formData.append('image', blogImage) // Attach the file object
+  formData.append('title', title)
+  formData.append('text', text)
+  formData.append('email', email)
+  formData.append('UserName', userName)
+  formData.append('UserImage', userImage)
+
+  // Append multiple images to form data
+  if (blogImages) {
+    for (let i = 0; i < blogImages.length; i++) {
+      formData.append('images', blogImages[i])
+    }
+  }
 
   try {
     const response = await axios.post(
-      'https://octtoppus-backend-b76z.vercel.app/API/Blog/AddBlog',
+      'http://localhost:5000/API/Blog/AddBlog',
       formData
     )
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       alert('Blog added successfully!')
       // Optionally reset form or redirect to a different page
     } else {
