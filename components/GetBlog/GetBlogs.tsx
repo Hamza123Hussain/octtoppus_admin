@@ -1,8 +1,9 @@
-import { GetBlogs } from '@/BLOG/GettingBlogs'
-import BlogCard from '@/BlogCard'
-import Loader from '@/Loader'
-import { Blog } from '@/util/BlogInterface'
+import Loader from '@/components/Loader'
+import { GetBlogs } from '@/functions/BLOG/GettingBlogs'
+import { Blog } from '@/utils/BlogInterface'
+
 import React, { useEffect, useState } from 'react'
+import BlogCard from '../BlogCard'
 
 const AllBlogs: React.FC = () => {
   const [BlogData, SetBlogData] = useState<Blog[]>([])

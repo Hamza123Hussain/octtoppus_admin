@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import ContextProvider from '@/Context'
-import ConditionalLayout from '@/condtionalLayout'
+import ContextProvider from '@/utils/Context'
+import ConditionalLayout from '@/components/condtionalLayout'
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist-sans',

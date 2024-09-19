@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { UserContext } from '@/Context'
-import { ADDBLOG } from '@/BLOG/AddNewBlog'
-import Loader from '@/Loader'
+import Loader from '@/components/Loader'
+import { UserContext } from '@/utils/Context'
+import { ADDBLOG } from '@/functions/BLOG/AddNewBlog'
 
 interface Section {
   title: string

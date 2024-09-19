@@ -1,9 +1,10 @@
 'use client'
 import Image from 'next/image'
 import React, { useContext, useState, useEffect } from 'react'
-import { UserContext } from './Context'
-import { handleSignOut } from './AUTH/SignOut'
+import { UserContext } from '../utils/Context'
+
 import { useRouter } from 'next/navigation'
+import { handleSignOut } from '@/functions/AUTH/SignOut'
 
 const Navbar: React.FC = () => {
   const Router = useRouter()
