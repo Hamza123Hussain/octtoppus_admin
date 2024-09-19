@@ -4,10 +4,7 @@ import Image from 'next/image'
 
 const BlogCard = ({ element }: { element: Blog }) => {
   return (
-    <div
-      key={element.id}
-      className="bg-black rounded-lg shadow-md overflow-hidden"
-    >
+    <div key={element.id} className="rounded-lg shadow-md overflow-hidden">
       <div className="relative">
         <img
           src={element.HeaderImageURL}
