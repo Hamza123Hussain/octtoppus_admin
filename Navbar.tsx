@@ -25,7 +25,7 @@ const Navbar = () => {
 
   if (!isClient) return null
   return (
-    <div className="flex flex-col mb-4 justify-between sm:flex-row bg-gray-900 w-full  p-2 px-4 items-center ">
+    <div className="flex flex-col mb-4 justify-between sm:flex-row bg-gray-400 w-full  p-2 px-4 items-center ">
       <div className=" flex gap-2 items-center">
         <Image
           src={context?.userData?.imageUrl || '/logo.png'} // Fallback to default image if no user image
