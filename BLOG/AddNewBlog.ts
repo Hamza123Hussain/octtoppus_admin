@@ -8,7 +8,8 @@ export const ADDBLOG = async (
   imageUrl: string,
   blogImages: FileList | null,
   headerImage: File | null,
-  conclusion: string
+  conclusion: string,
+  sections: Array<{ title: string; text: string }>
 ) => {
   const formData = new FormData()
   formData.append('title', title)
@@ -16,14 +17,18 @@ export const ADDBLOG = async (
   formData.append('email', email)
   formData.append('UserName', Name)
   formData.append('UserImage', imageUrl)
-  formData.append('conclusion', conclusion) // Add conclusion
+  formData.append('conclusion', conclusion)
+
+  // Add sections as JSON string
+  formData.append('sections', JSON.stringify(sections))
 
   if (headerImage) {
-    formData.append('headerImage', headerImage) // Add header image
+    formData.append('headerImage', headerImage)
   }
+
   if (blogImages) {
     for (let i = 0; i < blogImages.length; i++) {
-      formData.append('images', blogImages[i]) // Ensure 'images' matches backend field name
+      formData.append('images', blogImages[i])
     }
   }
 
