@@ -29,23 +29,18 @@ const Navbar: React.FC = () => {
   if (!isClient) return null
 
   return (
-    <div className="flex flex-col mb-4 justify-between sm:flex-row bg-gradient-to-r from-purple-600 to-purple-800 text-white p-4 items-center shadow-lg">
-      <div className="flex items-center gap-5">
-        <Image
-          src={context?.userData?.imageUrl || '/logo.png'} // Fallback to default image if no user image
-          alt="Profile Image"
-          width={40}
-          height={40}
-          className="rounded-full border-2 border-gray-200"
-        />
-        <h2 className="text-xl font-semibold ml-4">
-          {context?.userData?.Name}
-        </h2>
-      </div>
-
+    <div className="flex mb-4 mx-auto sm:flex-row bg-gradient-to-r from-purple-600 to-purple-800 text-white p-4 items-center shadow-lg">
+      <Image
+        src={context?.userData?.imageUrl || '/logo.png'} // Fallback to default image if no user image
+        alt="Profile Image"
+        width={40}
+        height={40}
+        className="rounded-full border-2 border-gray-200"
+      />
+      <h2 className="text-xl font-semibold ml-4">{context?.userData?.Name}</h2>
       <button
         onClick={SIGNOUT}
-        className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-500 transition duration-300 mt-4 sm:mt-0"
+        className=" bg-green-600 text-white p-2 rounded-lg hover:bg-red-500 transition duration-300 "
       >
         Sign Out
       </button>
