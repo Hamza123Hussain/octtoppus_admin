@@ -1,7 +1,6 @@
 'use client'
 
 import { AddBlog } from './AddNewBlog/page'
-import AllBlogs from './GetBlog/page'
 
 import Navbar from '@/Navbar'
 export default function Home() {
@@ -9,7 +8,6 @@ export default function Home() {
     <div className=" p-4 ">
       <Navbar />
       <AddBlog />
-      <AllBlogs />
     </div>
   )
 }
