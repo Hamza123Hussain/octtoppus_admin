@@ -1,7 +1,8 @@
 'use client'
-import { LoginUser } from '@/AUTH/LoginUser'
-import { InputValues } from '@/AUTH/SignUpInterface'
-import { UserContext } from '@/Context'
+
+import { LoginUser } from '@/functions/AUTH/LoginUser'
+import { InputValues } from '@/functions/AUTH/SignUpInterface'
+import { UserContext } from '@/utils/Context'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChangeEvent, useState, FormEvent, useContext } from 'react'

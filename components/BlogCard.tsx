@@ -1,12 +1,12 @@
 import React from 'react'
-import { Blog, sectionData } from './util/BlogInterface'
 import Image from 'next/image'
+import { Blog, sectionData } from '@/utils/BlogInterface'
 
 const BlogCard: React.FC<{ element: Blog }> = ({ element }) => {
   return (
     <div
       key={element.id}
-      className="rounded-lg shadow-md overflow-hidden bg-gray-800 text-orange-300"
+      className="bg-gray-800 text-orange-300 rounded-lg shadow-md overflow-hidden"
     >
       <div className="relative">
         <img
@@ -16,7 +16,7 @@ const BlogCard: React.FC<{ element: Blog }> = ({ element }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
         <div className="absolute top-4 left-4 flex flex-col space-y-2 z-10">
-          {/* Uncomment and use if user image is available
+          {/* Uncomment if user image is available
           <img
             src={element.UserImage}
             alt="Author"
@@ -35,12 +35,12 @@ const BlogCard: React.FC<{ element: Blog }> = ({ element }) => {
         <p className="text-lg">{element.Text}</p>
         {element.BlogImageURLs.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
-            {element.BlogImageURLs.map((image) => (
+            {element.BlogImageURLs.map((image: string) => (
               <img
                 key={image}
                 src={image}
                 alt="Blog"
-                className="w-32 h-32 object-cover rounded-md"
+                className="w-full sm:w-32 h-auto object-cover rounded-md"
               />
             ))}
           </div>
@@ -55,9 +55,9 @@ const BlogCard: React.FC<{ element: Blog }> = ({ element }) => {
             <Image
               src={section.image}
               alt={section.text}
-              width={500}
-              height={200}
-              className="object-cover rounded-md"
+              width={600}
+              height={300}
+              className="object-cover rounded-md w-full"
             />
             <h1 className="text-xl font-semibold mt-2">{section.title}</h1>
             <p className="text-lg">{section.text}</p>

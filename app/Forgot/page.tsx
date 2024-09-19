@@ -1,6 +1,7 @@
 'use client'
+import { handlePasswordReset } from '@/functions/AUTH/ResetPass'
 import { useState } from 'react'
-import { handlePasswordReset } from '@/AUTH/ResetPass'
+
 export default function PasswordReset() {
   const [email, setEmail] = useState('')
   const ResetPass = async () => {

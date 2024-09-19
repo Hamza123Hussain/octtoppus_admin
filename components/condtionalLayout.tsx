@@ -3,7 +3,7 @@
 import { ReactNode, useContext, useEffect } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { UserContext } from './utils/Context'
+import { UserContext } from '@/utils/Context'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()

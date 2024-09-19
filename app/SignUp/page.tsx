@@ -1,8 +1,9 @@
 'use client'
 import { useState, ChangeEvent, FormEvent } from 'react'
 import Image from 'next/image'
-import { RegisterUser } from '@/AUTH/RegisterUser'
+
 import { useRouter } from 'next/navigation'
+import { RegisterUser } from '@/functions/AUTH/RegisterUser'
 export default function SignUp() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null) // Update state type to File | null
   const [inputValues, setInputValues] = useState({
