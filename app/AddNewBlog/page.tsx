@@ -3,62 +3,74 @@ import { UserContext } from '@/Context'
 import { ADDBLOG } from '@/BLOG/AddNewBlog'
 import Loader from '@/Loader'
 
-const AddBlog = () => {
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
-  const [conclusion, setConclusion] = useState('')
-  const [sections, setSections] = useState([{ title: '', text: '' }]) // State for sections
+interface Section {
+  title: string
+  text: string
+  image: File | null
+}
+
+const AddBlog: React.FC = () => {
+  const [title, setTitle] = useState<string>('')
+  const [text, setText] = useState<string>('')
+  const [conclusion, setConclusion] = useState<string>('')
+  const [sections, setSections] = useState<Section[]>([
+    { title: '', text: '', image: null },
+  ])
   const context = useContext(UserContext)
   const [blogImages, setBlogImages] = useState<FileList | null>(null)
   const [headerImage, setHeaderImage] = useState<File | null>(null)
-  const [loading, setLoader] = useState(false)
+  const [loading, setLoader] = useState<boolean>(false)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
     if (event.target.name === 'headerImage') {
       setHeaderImage(files ? files[0] : null)
-    } else {
+    } else if (event.target.name === 'blogImages') {
       setBlogImages(files)
     }
-  }
-
-  // Add a new empty section
-  const addSection = () => {
-    setSections([...sections, { title: '', text: '' }])
   }
 
   // Handle section input change
   const handleSectionChange = (
     index: number,
-    field: 'title' | 'text',
-    value: string
+    field: keyof Section,
+    value: string | File | null
   ) => {
     const updatedSections = [...sections]
-    updatedSections[index][field] = value
+    updatedSections[index] = {
+      ...updatedSections[index],
+      [field]: value,
+    }
     setSections(updatedSections)
   }
 
+  // Add a new empty section
+  const addSection = () => {
+    setSections([...sections, { title: '', text: '', image: null }])
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
-    setLoader(true)
     event.preventDefault()
+    setLoader(true)
+
     if (context?.userData) {
       const data = await ADDBLOG(
         title,
         text,
-        context?.userData?.email,
-        context?.userData?.Name,
-        context?.userData?.imageUrl,
+        context.userData.email,
+        context.userData.Name,
+        context.userData.imageUrl,
         blogImages,
         headerImage,
         conclusion,
-        sections // Pass sections array to the backend
+        sections // Pass sections with images
       )
       if (data) {
         alert('New Blog Added')
-        setText('')
         setTitle('')
+        setText('')
         setConclusion('')
-        setSections([{ title: '', text: '' }]) // Reset sections
+        setSections([{ title: '', text: '', image: null }])
         setLoader(false)
       }
     }
@@ -135,6 +147,14 @@ const AddBlog = () => {
                 handleSectionChange(index, 'text', e.target.value)
               }
               required
+            />
+            <label>Upload Section Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) =>
+                handleSectionChange(index, 'image', e.target.files?.[0] || null)
+              }
             />
           </div>
         ))}
