@@ -2,18 +2,22 @@ import React from 'react'
 import { Blog, sectionData } from './util/BlogInterface'
 import Image from 'next/image'
 
-const BlogCard = ({ element }: { element: Blog }) => {
+const BlogCard: React.FC<{ element: Blog }> = ({ element }) => {
   return (
-    <div key={element.id} className="rounded-lg shadow-md overflow-hidden">
+    <div
+      key={element.id}
+      className="rounded-lg shadow-md overflow-hidden bg-gray-800 text-orange-300"
+    >
       <div className="relative">
         <img
           src={element.HeaderImageURL}
           alt="Header"
-          className="w-12 h-64 object-cover"
+          className="w-full h-64 object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
-        <div className="absolute top-4 left-4 flex items-center space-x-3 z-10">
-          {/* <img
+        <div className="absolute top-4 left-4 flex flex-col space-y-2 z-10">
+          {/* Uncomment and use if user image is available
+          <img
             src={element.UserImage}
             alt="Author"
             className="w-12 h-12 rounded-full border-4 border-white"
@@ -31,14 +35,14 @@ const BlogCard = ({ element }: { element: Blog }) => {
         <p className="text-lg">{element.Text}</p>
         {element.BlogImageURLs.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
-            {/* {element.BlogImageURLs.map((image) => (
+            {element.BlogImageURLs.map((image) => (
               <img
                 key={image}
                 src={image}
                 alt="Blog"
-                className="w-32 h-32 object-cover rounded"
+                className="w-32 h-32 object-cover rounded-md"
               />
-            ))} */}
+            ))}
           </div>
         )}
         {element.Conclusion && (
@@ -46,17 +50,17 @@ const BlogCard = ({ element }: { element: Blog }) => {
             <strong>Conclusion:</strong> {element.Conclusion}
           </p>
         )}
-
         {element.Sections.map((section: sectionData) => (
-          <div key={section.image}>
+          <div key={section.image} className="my-4">
             <Image
               src={section.image}
               alt={section.text}
-              width={100}
-              height={40}
+              width={500}
+              height={200}
+              className="object-cover rounded-md"
             />
-            <h1>{section.text}</h1>
-            <h2>{section.title}</h2>
+            <h1 className="text-xl font-semibold mt-2">{section.title}</h1>
+            <p className="text-lg">{section.text}</p>
           </div>
         ))}
       </div>
