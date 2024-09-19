@@ -9,4 +9,10 @@ export interface Blog {
   UserImage: string // URL of the user's image
   HeaderImageURL: string // URL of the header image
   BlogImageURLs: string[] // Array of URLs for blog images
+  Sections: sectionData[]
+}
+export interface sectionData {
+  image: string
+  text: string
+  title: string
 }
