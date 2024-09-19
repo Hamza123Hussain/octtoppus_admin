@@ -1,7 +1,8 @@
 'use client'
 
+import { AddBlog } from './AddNewBlog/page'
 import AllBlogs from './GetBlog/page'
-import AddBlog from './AddNewBlog/page'
+
 import Navbar from '@/Navbar'
 export default function Home() {
   return (
