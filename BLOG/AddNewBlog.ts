@@ -9,7 +9,7 @@ export const ADDBLOG = async (
   blogImages: FileList | null,
   headerImage: File | null,
   conclusion: string,
-  sections: Array<{ title: string; text: string }>
+  sections: Array<{ title: string; text: string; image: File | null }>
 ) => {
   const formData = new FormData()
   formData.append('title', title)
@@ -19,8 +19,19 @@ export const ADDBLOG = async (
   formData.append('UserImage', imageUrl)
   formData.append('conclusion', conclusion)
 
-  // Add sections as JSON string
-  formData.append('sections', JSON.stringify(sections))
+  // Add sections as JSON string without images
+  const sectionData = sections.map((section) => ({
+    title: section.title,
+    text: section.text,
+  }))
+  formData.append('sections', JSON.stringify(sectionData))
+
+  // Attach each section image
+  sections.forEach((section, index) => {
+    if (section.image) {
+      formData.append(`sectionImage_${index}`, section.image)
+    }
+  })
 
   if (headerImage) {
     formData.append('headerImage', headerImage)
