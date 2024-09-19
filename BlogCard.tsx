@@ -1,5 +1,6 @@
 import React from 'react'
-import { Blog } from './util/BlogInterface'
+import { Blog, sectionData } from './util/BlogInterface'
+import Image from 'next/image'
 
 const BlogCard = ({ element }: { element: Blog }) => {
   return (
@@ -48,6 +49,19 @@ const BlogCard = ({ element }: { element: Blog }) => {
             <strong>Conclusion:</strong> {element.Conclusion}
           </p>
         )}
+
+        {element.Sections.map((section: sectionData) => (
+          <div key={section.image}>
+            <Image
+              src={section.image}
+              alt={section.text}
+              width={100}
+              height={40}
+            />
+            <h1>{section.text}</h1>
+            <h2>{section.title}</h2>
+          </div>
+        ))}
       </div>
     </div>
   )
