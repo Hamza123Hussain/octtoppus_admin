@@ -1,7 +1,7 @@
-import { SignOut } from '@/functions/AUTH/SignOut'
 import { UserContext } from '@/utils/Context'
 import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader'
+import { handleSignOut } from '@/functions/AUTH/SignOut'
 
 const Userdetails = () => {
   const { userData, setUserData } = useContext(UserContext)
@@ -12,7 +12,7 @@ const Userdetails = () => {
   }, [])
 
   const ByeBye = async () => {
-    const Data = await SignOut()
+    const Data = await handleSignOut()
     if (Data) {
       setUserData(null)
     }
