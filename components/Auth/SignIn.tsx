@@ -1,16 +1,19 @@
 'use client'
 
 import { LoginUser } from '@/functions/AUTH/LoginUser'
+import { InputValues } from '@/functions/AUTH/SignUpInterface'
 import { UserContext } from '@/utils/Context'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useState } from 'react'
 
 const SignIn = () => {
-  const [inputVal, setInputVal] = useState({
+  const [inputVal, setInputVal] = useState<InputValues>({
     email: '',
     password: '',
+    Name: '',
+    Image: null, // Initialize the image as null
   })
-  const Router = useRouter()
+  const router = useRouter()
   const { setUserData } = useContext(UserContext)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +25,9 @@ const SignIn = () => {
     if (Data) {
       setUserData(Data)
       console.log('USER DATA ', Data)
-      Router.push('/')
+      router.push('/')
+    } else {
+      console.error('Login failed')
     }
   }
 
@@ -45,24 +50,24 @@ const SignIn = () => {
         name="password"
         value={inputVal.password}
         onChange={handleChange}
-        className="mb-4 p-3 w-full rounded bg-slate-700 text-white-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-300"
+        className="mb-4 p-3 w-full rounded bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-300"
       />
       <button
         onClick={HandleLogin}
-        className="bg-purple-500 hover:bg-purple-400 text-purple-700 font-semibold px-6 py-2 rounded transition-all w-full"
+        className="bg-purple-500 hover:bg-purple-400 text-white font-semibold px-6 py-2 rounded transition-all w-full"
       >
         Sign In
       </button>
       <div
         className="flex justify-end text-purple-700 mt-2 hover:text-purple-900 cursor-pointer"
-        onClick={() => Router.push('/forgotpass')}
+        onClick={() => router.push('/forgotpass')}
       >
         <span className="text-xs sm:text-sm">Forgot Your Password?</span>
       </div>
       <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
-          onClick={() => Router.push('/signup')}
+          onClick={() => router.push('/signup')}
           className="underline cursor-pointer text-purple-700 hover:text-purple-900"
         >
           Sign Up
