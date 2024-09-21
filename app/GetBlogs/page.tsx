@@ -27,7 +27,22 @@ const AllBlogs: React.FC = () => {
   return (
     <div className="p-8 bg-gray-900 min-h-screen">
       {BlogData.length > 0 ? (
-        <BlogTable blogs={BlogData} />
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-gray-800 text-white rounded-lg shadow-md">
+            <thead className="bg-gradient-to-r from-purple-700 to-purple-800">
+              <tr>
+                <th className="p-4 text-left whitespace-nowrap">Title</th>
+                <th className="p-4 text-left whitespace-nowrap">Created By</th>
+                <th className="p-4 text-center whitespace-nowrap">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BlogData.map((blog) => (
+                <BlogTable blog={blog} key={blog.id} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="text-center text-gray-500">No blogs found</div>
       )}
