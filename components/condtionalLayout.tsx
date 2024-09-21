@@ -4,6 +4,7 @@ import { ReactNode, useContext, useEffect } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 import { UserContext } from '@/utils/Context'
+import Navbar from './Navbar'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
@@ -24,6 +25,11 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
     }
   }, [isLoggedIn, pathname, router])
 
-  return <>{children}</>
+  return (
+    <div className=" flex flex-col">
+      <Navbar />
+      {children}
+    </div>
+  )
 }
 export default ConditionalLayout
