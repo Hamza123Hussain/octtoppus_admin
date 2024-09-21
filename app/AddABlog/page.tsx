@@ -18,7 +18,6 @@ const AddBlog: React.FC = () => {
     { title: '', text: '', image: null },
   ])
   const context = useContext(UserContext)
-  const [blogImages, setBlogImages] = useState<FileList | null>(null)
   const [headerImage, setHeaderImage] = useState<File | null>(null)
   const [loading, setLoader] = useState<boolean>(false)
 
@@ -26,12 +25,8 @@ const AddBlog: React.FC = () => {
     const files = event.target.files
     if (event.target.name === 'headerImage') {
       setHeaderImage(files ? files[0] : null)
-    } else if (event.target.name === 'blogImages') {
-      setBlogImages(files)
     }
   }
-
-  // Handle section input change
   const handleSectionChange = (
     index: number,
     field: keyof Section,
@@ -44,8 +39,6 @@ const AddBlog: React.FC = () => {
     }
     setSections(updatedSections)
   }
-
-  // Add a new empty section
   const addSection = () => {
     setSections([...sections, { title: '', text: '', image: null }])
   }
@@ -53,7 +46,6 @@ const AddBlog: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoader(true)
-
     if (context?.userData) {
       const data = await ADDBLOG(
         title,
@@ -61,10 +53,9 @@ const AddBlog: React.FC = () => {
         context.userData.email,
         context.userData.Name,
         context.userData.imageUrl,
-        blogImages,
         headerImage,
         conclusion,
-        sections // Pass sections with images
+        sections
       )
       if (data) {
         alert('New Blog Added')
@@ -80,7 +71,7 @@ const AddBlog: React.FC = () => {
   if (loading) return <Loader />
 
   return (
-    <div className="add-blog text-orange-300 bg-gray-900 p-8 rounded-lg shadow-md">
+    <div className="add-blog text-white bg-gray-900 p-8 rounded-lg shadow-md max-w-4xl mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-purple-500">Add New Blog</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
@@ -93,7 +84,7 @@ const AddBlog: React.FC = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
         <div>
@@ -105,7 +96,7 @@ const AddBlog: React.FC = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             required
-            className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
+            className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
           ></textarea>
         </div>
         <div>
@@ -120,7 +111,7 @@ const AddBlog: React.FC = () => {
             value={conclusion}
             onChange={(e) => setConclusion(e.target.value)}
             required
-            className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
+            className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
           ></textarea>
         </div>
         <div>
@@ -136,27 +127,9 @@ const AddBlog: React.FC = () => {
             name="headerImage"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 file:bg-purple-500 file:text-orange-300 file:rounded-md file:border-none file:py-1 file:px-2 file:mr-2"
+            className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 file:bg-purple-500 file:text-white file:rounded-md file:border-none file:py-1 file:px-2 file:mr-2"
           />
         </div>
-        <div>
-          <label
-            htmlFor="blogImages"
-            className="block text-sm font-medium mb-1"
-          >
-            Upload Blog Images
-          </label>
-          <input
-            type="file"
-            id="blogImages"
-            multiple
-            accept="image/*"
-            name="blogImages"
-            onChange={handleFileChange}
-            className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 file:bg-purple-500 file:text-orange-300 file:rounded-md file:border-none file:py-1 file:px-2 file:mr-2"
-          />
-        </div>
-
         <h3 className="text-lg font-medium mt-6 mb-2 text-purple-500">
           Sections
         </h3>
@@ -179,7 +152,7 @@ const AddBlog: React.FC = () => {
                 handleSectionChange(index, 'title', e.target.value)
               }
               required
-              className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <label
               htmlFor={`sectionText-${index}`}
@@ -194,7 +167,7 @@ const AddBlog: React.FC = () => {
                 handleSectionChange(index, 'text', e.target.value)
               }
               required
-              className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
+              className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 h-32"
             ></textarea>
             <label
               htmlFor={`sectionImage-${index}`}
@@ -213,7 +186,7 @@ const AddBlog: React.FC = () => {
                   e.target.files ? e.target.files[0] : null
                 )
               }
-              className="w-full border-gray-700 bg-gray-800 text-orange-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 file:bg-purple-500 file:text-orange-300 file:rounded-md file:border-none file:py-1 file:px-2 file:mr-2"
+              className="w-full border-gray-700 bg-gray-800 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 file:bg-purple-500 file:text-white file:rounded-md file:border-none file:py-1 file:px-2 file:mr-2"
             />
           </div>
         ))}
@@ -221,14 +194,14 @@ const AddBlog: React.FC = () => {
         <button
           type="button"
           onClick={addSection}
-          className="bg-purple-500 hover:bg-purple-700 text-orange-300 font-bold py-2 px-4 rounded mt-4"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4"
         >
           Add Another Section
         </button>
 
         <button
           type="submit"
-          className="bg-purple-500 hover:bg-purple-700 text-orange-300 font-bold py-2 px-4 rounded mt-4 ml-4"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4"
         >
           Submit Blog
         </button>
