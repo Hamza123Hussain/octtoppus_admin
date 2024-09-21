@@ -3,13 +3,7 @@ import React, { useContext, useState } from 'react'
 import Loader from '@/components/Loader'
 import { UserContext } from '@/utils/Context'
 import { ADDBLOG } from '@/functions/BLOG/AddNewBlog'
-
-interface Section {
-  title: string
-  text: string
-  image: File | null
-}
-
+import { Section } from '@/utils/sectioninterface'
 const AddBlog: React.FC = () => {
   const [title, setTitle] = useState<string>('')
   const [text, setText] = useState<string>('')
