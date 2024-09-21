@@ -6,7 +6,6 @@ export const ADDBLOG = async (
   email: string,
   Name: string,
   imageUrl: string,
-  blogImages: FileList | null,
   headerImage: File | null,
   conclusion: string,
   sections: Array<{ title: string; text: string; image: File | null }>
@@ -35,12 +34,6 @@ export const ADDBLOG = async (
 
   if (headerImage) {
     formData.append('headerImage', headerImage)
-  }
-
-  if (blogImages) {
-    for (let i = 0; i < blogImages.length; i++) {
-      formData.append('images', blogImages[i])
-    }
   }
 
   try {
