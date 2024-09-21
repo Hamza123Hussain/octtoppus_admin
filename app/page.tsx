@@ -7,7 +7,7 @@ export default function AdminLandingPage() {
     <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gray-900 p-6">
       <div className="flex flex-col gap-4 items-center justify-center mb-8">
         <Image src={'/logo.png'} width={400} height={100} alt="Logo" />{' '}
-        <h2 className="text-6xl font-semibold text-purple-800 mb-6">
+        <h2 className=" text-4xl sm:text-6xl font-semibold text-purple-800 mb-6">
           Admin Panel
         </h2>
       </div>
