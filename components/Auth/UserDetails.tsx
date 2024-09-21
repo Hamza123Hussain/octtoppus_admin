@@ -2,6 +2,7 @@ import { UserContext } from '@/utils/Context'
 import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader'
 import { handleSignOut } from '@/functions/AUTH/SignOut'
+import Image from 'next/image'
 
 const Userdetails = () => {
   const { userData, setUserData } = useContext(UserContext)
@@ -21,22 +22,22 @@ const Userdetails = () => {
   return (
     <>
       {isClient && userData?.Name ? (
-        <div className="flex flex-col gap-2 items-center">
-          <div className=" flex gap-2 items-center">
-            <img
+        <div className="flex flex-col gap-2 items-center px-2">
+          <div className=" flex justify-center items-center gap-2 w-full">
+            <Image
               src={userData.imageUrl}
               width={20}
-              height={20}
+              height={50}
               className="rounded-full"
               alt="image"
             />
-            <h1 className="font-bold text-sm text-slate-800">
+            <h1 className="font-bold text-xl text-purple-800">
               {userData.Name}
             </h1>
           </div>
           <button
             onClick={ByeBye}
-            className="px-5 gap-2 bg-red-500 text-black rounded-lg"
+            className="px-5 gap-2 bg-red-500 hover:bg-red-600 text-black rounded-lg"
           >
             Sign Out
           </button>
