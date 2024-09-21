@@ -47,14 +47,12 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
         </div>
       ) : isAuthPage ? (
         <div className="flex flex-col min-h-screen">
-          <Navbar />
+          {/* <Navbar /> */}
 
           {children}
         </div>
       ) : (
         <div className="flex flex-col  min-h-screen">
-          <Navbar />
-
           <Login />
         </div>
       )}
