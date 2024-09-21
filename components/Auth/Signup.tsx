@@ -33,7 +33,7 @@ const SignUp = () => {
       <SignUpTextFields />
       <button
         onClick={HandleSignup}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4"
+        className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4"
       >
         Sign Up
       </button>
@@ -41,7 +41,7 @@ const SignUp = () => {
         Already Have An Account? Click Here To{' '}
         <span
           onClick={() => Router.push('/login')}
-          className="underline cursor-pointer text-blue-400 hover:text-blue-500 transition-all duration-300"
+          className="underline cursor-pointer text-purple-400 hover:text-purple-500 transition-all duration-300"
         >
           Log In
         </span>
