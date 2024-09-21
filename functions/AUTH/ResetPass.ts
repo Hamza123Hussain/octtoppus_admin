@@ -1,13 +1,17 @@
-import { APIURL } from '@/utils/SignupInterface'
 import axios from 'axios'
 
-export const ResetPass = async (email: string) => {
-  const Response = await axios.post(`${APIURL}/api/Auth/Reset`, { email })
+export const handlePasswordReset = async (email: string) => {
   try {
-    if (Response.status === 200) {
-      return Response.data
+    const response = await axios.post(
+      'https://octtoppus-backend-b76z.vercel.app/API/AUTH/Reset',
+      {
+        email,
+      }
+    )
+    if (response.status === 200) {
+      return true
     }
   } catch (error) {
-    console.log('ERROR IN FUNCTION : ', error)
+    console.error('Error sending password reset email:', error)
   }
 }
