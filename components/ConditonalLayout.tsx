@@ -4,10 +4,9 @@ import { UserContext } from '@/utils/Context'
 import { usePathname } from 'next/navigation'
 
 import Navbar from './Navbar'
-
-import Login from '@/app/login/page'
 import MobileSideBar from './MobileSIdeBAR'
 import Footer from './Footer'
+import Login from '@/app/login/page'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
