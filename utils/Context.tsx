@@ -1,62 +1,52 @@
 'use client'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
-import React, {
-  createContext,
-  ReactNode,
-  useEffect,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from 'react'
-
-// Define the interface for UserData
-interface UserData {
-  Name: string
-  UserID: string
-  email: string
-  imageUrl: string
-}
-
-// Define the type for the context value
-interface UserContextType {
-  userData: UserData | null
-  setUserData: Dispatch<SetStateAction<UserData | null>>
-}
-
-// Initialize UserContext with default values
-export const UserContext = createContext<UserContextType | undefined>(undefined)
+export const UserContext = createContext<any>(null)
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
-  const [userData, setUserData] = useState<UserData | null>(null)
+  const [inputVal, setInputVal] = useState<any>({
+    email: '',
+    password: '',
+    Name: '',
+    Image: null,
+  })
+  /**Setting States */
+  const [inputValue, setInputValue] = useState('')
+  const [loading, setLoading] = useState(false) // Start with loading true
 
-  // Load userData from localStorage on the client side
-  useEffect(() => {
+  const [userData, setUserData] = useState<any>(() => {
     try {
-      if (typeof window !== 'undefined') {
-        // Check if localStorage exists (only runs on client side)
-        const storedData = localStorage.getItem('userData')
-        if (storedData) {
-          setUserData(JSON.parse(storedData))
-        }
-      }
+      const storedData = localStorage.getItem('CharagDinAdmin')
+      return storedData ? JSON.parse(storedData) : null // Initialize with empty object
     } catch (error) {
-      console.error('Failed to load userData from localStorage:', error)
+      console.error('Failed to parse userData from localStorage:', error)
+      return {} // Fallback to empty object
     }
-  }, [])
+  })
 
-  // Effect for saving userData to localStorage
+  /**use effect for the states */
   useEffect(() => {
+    // Save userData to local storage whenever it changes
     try {
-      if (userData && typeof window !== 'undefined') {
-        localStorage.setItem('userData', JSON.stringify(userData))
-      }
+      localStorage.setItem('CharagDinAdmin', JSON.stringify(userData))
     } catch (error) {
       console.error('Failed to save userData to localStorage:', error)
     }
   }, [userData])
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider
+      value={{
+        userData,
+        setUserData,
+        loading,
+        setLoading,
+        inputVal,
+        setInputVal,
+        inputValue,
+        setInputValue,
+      }}
+    >
       {children}
     </UserContext.Provider>
   )

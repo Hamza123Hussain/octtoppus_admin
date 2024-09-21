@@ -1,14 +1,13 @@
+import { APIURL } from '@/utils/SignupInterface'
 import axios from 'axios'
 
-export const handleSignOut = async () => {
+export const SignOut = async () => {
   try {
-    const response = await axios.get(
-      'https://octtoppus-backend-b76z.vercel.app/API/AUTH/SignOut'
-    )
-    if (response.status === 200) {
-      return true
+    const Response = await axios.get(`${APIURL}/api/Auth/Signout`)
+    if (Response.status === 200) {
+      return Response.data
     }
   } catch (error) {
-    console.error('Sign-out error:', error)
+    console.log('ERROR IN FUNCTION', error)
   }
 }
