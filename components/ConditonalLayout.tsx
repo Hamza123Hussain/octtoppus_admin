@@ -7,6 +7,7 @@ import Navbar from './Navbar'
 
 import Login from '@/app/login/page'
 import MobileSideBar from './MobileSIdeBAR'
+import Footer from './Footer'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
@@ -40,20 +41,25 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
 
           {/* <div className="flex-1 flex flex-col md:ml-64"> */}
           <MobileSideBar />
-          <main className="flex-1 min-h-screen overflow-y-auto bg-gray-100 ">
+          <main className="flex-1 min-h-screen overflow-y-auto bg-gray-900 ">
             {children}
           </main>
+          <Footer />
           {/* </div> */}
         </div>
       ) : isAuthPage ? (
-        <div className="flex flex-col min-h-screen">
-          {/* <Navbar /> */}
+        <div className="flex flex-col min-h-screen bg-gray-900">
+          <Navbar />
 
           {children}
+          <Footer />
         </div>
       ) : (
-        <div className="flex flex-col  min-h-screen">
+        <div className="flex flex-col  min-h-screen bg-gray-900">
+          <Navbar />
+
           <Login />
+          <Footer />
         </div>
       )}
     </>
