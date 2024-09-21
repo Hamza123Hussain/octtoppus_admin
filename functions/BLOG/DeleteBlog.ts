@@ -3,7 +3,7 @@ import axios from 'axios'
 export const deleteBlog = async (id: string) => {
   try {
     const response = await axios.delete(
-      `http://localhost:5000/API/Blog/DeleteBlog?${id}`
+      `https://octtoppus-backend-b76z.vercel.app/API/Blog/DeleteBlog?${id}`
     ) // Adjust the URL based on your API route
     return response.data // This will be { success: true }
   } catch (error) {

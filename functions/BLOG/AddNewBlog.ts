@@ -38,7 +38,7 @@ export const ADDBLOG = async (
 
   try {
     const response = await axios.post(
-      'http://localhost:5000/API/Blog/AddBlog',
+      'https://octtoppus-backend-b76z.vercel.app/API/Blog/AddBlog',
       formData,
       {
         headers: {

@@ -2,7 +2,9 @@ import axios from 'axios'
 
 export const GetBlogs = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/API/Blog/GetAll')
+    const response = await axios.get(
+      'https://octtoppus-backend-b76z.vercel.app/API/Blog/GetAll'
+    )
 
     if (response.status === 200) {
       return response.data
