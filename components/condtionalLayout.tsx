@@ -4,7 +4,8 @@ import { ReactNode, useContext, useEffect } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 import { UserContext } from '@/utils/Context'
-import Navbar from './Navbar'
+import Navbar from './Sidebar/Navabar'
+import MobileSideBar from './Sidebar/SideBar'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
@@ -28,7 +29,11 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className=" flex flex-col">
       <Navbar />
-      {children}
+
+      <div className=" flex">
+        <MobileSideBar />
+        <div className=" flex-1">{children}</div>
+      </div>
     </div>
   )
 }
