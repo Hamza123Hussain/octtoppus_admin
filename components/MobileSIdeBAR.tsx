@@ -8,21 +8,18 @@ import Image from 'next/image'
 
 const MobileSideBar = () => {
   return (
-    <div className=" flex items-center p-2 bg-gray-100 border-b-2  border-slate-700 ">
+    <div className=" flex items-center p-2 bg-gray-900 border-b-2  border-slate-700 ">
       <Sheet>
         <SheetTrigger>
-          <div className=" text-black  px-2 flex items-center gap-2">
+          <div className=" text-white  px-2 flex items-center gap-2">
             <Menu size={40} />
             <Image
               className=" mt-2"
-              src={'/Logo.png'}
-              width={50}
+              src={'/logo.png'}
+              width={200}
               height={10}
               alt="Logo"
             />{' '}
-            <h6 className="mt-2 text-lg text-slate-800 font-extrabold">
-              CharagDin
-            </h6>
           </div>
         </SheetTrigger>
 
