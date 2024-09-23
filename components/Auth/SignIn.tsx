@@ -64,15 +64,15 @@ const SignIn = () => {
       >
         <span className="text-xs sm:text-sm">Forgot Your Password?</span>
       </div>
-      {/* <h6 className="text-xs mt-4 text-gray-400 text-center">
+      <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
-          onClick={() => router.push('/signup')}
+          onClick={() => router.push('/Register')}
           className="underline cursor-pointer text-purple-700 hover:text-purple-900"
         >
           Sign Up
         </span>
-      </h6> */}
+      </h6>
     </div>
   )
 }
