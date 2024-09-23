@@ -64,7 +64,7 @@ const SignIn = () => {
       >
         <span className="text-xs sm:text-sm">Forgot Your Password?</span>
       </div>
-      <h6 className="text-xs mt-4 text-gray-400 text-center">
+      {/* <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
           onClick={() => router.push('/signup')}
@@ -72,7 +72,7 @@ const SignIn = () => {
         >
           Sign Up
         </span>
-      </h6>
+      </h6> */}
     </div>
   )
 }
