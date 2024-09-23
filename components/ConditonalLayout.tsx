@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import Navbar from './Navbar'
 import MobileSideBar from './MobileSIdeBAR'
 import Footer from './Footer'
-import Login from '@/app/login/page'
+import SignIn from './Auth/SignIn'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
@@ -56,8 +56,9 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
       ) : (
         <div className="flex flex-col  min-h-screen bg-gray-900">
           <Navbar />
-
-          <Login />
+          <div className=" p-3 mt-5 mx-auto ">
+            <SignIn />
+          </div>
           <Footer />
         </div>
       )}
