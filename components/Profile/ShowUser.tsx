@@ -1,7 +1,6 @@
 import { RootState } from '@/utils/Redux/Store/Store'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import UpdateModal from './UpdateModal'
 import UserField from './UserField'
 const ShowUser = () => {
   const User = useSelector((state: RootState) => state.user)
@@ -20,10 +19,10 @@ const ShowUser = () => {
           <UserField Attribute={User.Salary} Name="Salary" />
           <UserField Attribute={User.imageUrl} Name="User Image" />
         </div>
-        {/* Update Profile Button */}
-        <div className="flex justify-center">
+        Update Profile Button
+        {/* <div className="flex justify-center">
           <UpdateModal />
-        </div>
+        </div> */}
       </div>
     </div>
   )
