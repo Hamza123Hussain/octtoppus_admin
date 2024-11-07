@@ -1,8 +1,17 @@
 import { RootState } from '@/utils/Redux/Store/Store'
-import { UserFetched } from '@/utils/SignUpInterface'
+
 import Image from 'next/image'
 import React from 'react'
 import { useSelector } from 'react-redux'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
+
 const ImagePreview = ({ User }: { User?: UserFetched }) => {
   const user = useSelector((state: RootState) => state.user)
   return (
