@@ -8,10 +8,17 @@ import { AllTasks } from '@/functions/Frontend/Alltasks'
 import { AttendanceRecord } from '@/utils/AttendanceInterface'
 import { RootState } from '@/utils/Redux/Store/Store'
 import { MergedUserData } from '@/utils/Report_Interface'
-import { UserFetched } from '@/utils/SignUpInterface'
 import { TaskFetch } from '@/utils/TaskformInterface'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
 
 const Report: React.FC = () => {
   const user = useSelector((state: RootState) => state.user)
