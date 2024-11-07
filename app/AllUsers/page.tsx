@@ -1,6 +1,7 @@
 'use client'
 import Loader from '@/components/Loader'
 import UserCard from '@/components/Profile/UserCard'
+
 import { Allusers } from '@/functions/AUTH/AllUsers'
 import { RootState } from '@/utils/Redux/Store/Store'
 import { UserFetched } from '@/utils/SignUpInterface'

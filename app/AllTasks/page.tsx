@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../utils/Redux/Store/Store'
 import Loader from '@/components/Loader'
 import UserSelection from '@/components/Layout/UserSelection'
-import AllTasksTable from '@/components/Tasks/AllTaskInfo'
-import Usertableview from '@/components/Layout/Usertableview'
 import { Allusers } from '@/functions/AUTH/AllUsers'
 import { UserFetched } from '@/utils/SignUpInterface'
 const AllTasks: React.FC = () => {
