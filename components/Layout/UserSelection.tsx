@@ -1,9 +1,8 @@
 import React from 'react'
-
 import DropDown from './DropDown'
 import TaskPage from '../Tasks/TaskPage'
 import AttendancePage from '../Attendance/AttendancePage'
-import { UserFetched } from '@/utils/SignupInterface'
+import { UserFetched } from '@/utils/SignUpInterface'
 const UserSelection = ({
   type,
   Users,

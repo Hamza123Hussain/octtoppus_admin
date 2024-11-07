@@ -3,8 +3,8 @@ import React from 'react'
 import UpdateModal from './UpdateModal'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-import { UserFetched } from '@/utils/SignupInterface'
 import deleteUser from '@/functions/AUTH/DeleteUser'
+import { UserFetched } from '@/utils/SignUpInterface'
 const UserCard = ({ User }: { User: UserFetched }) => {
   const Router = useRouter()
   const DeleteMe = async () => {

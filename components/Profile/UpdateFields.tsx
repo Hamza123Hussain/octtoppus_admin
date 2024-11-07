@@ -10,6 +10,7 @@ import { updateUser } from '@/functions/AUTH/UpdateUser'
 import { GetUserData } from '@/utils/Redux/Slice/User/UserSlice'
 import Loader from '../Loader'
 import ImagePreview from './ImagePreview'
+import { UserFetched } from '@/utils/SignUpInterface'
 const UpdateFields = ({ User }: { User?: UserFetched }) => {
   const [Loading, SetLoading] = useState(false)
   const Dispatch = useDispatch()
