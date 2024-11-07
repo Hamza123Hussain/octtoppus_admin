@@ -1,11 +1,11 @@
 import { TaskFetch } from '@/utils/TaskformInterface'
-
 export const filteredTasks = (
   allTasks: TaskFetch[],
   statusFilter: string,
   timeFilter: string,
   priorityFilter: string,
-  monthFilter: number // New parameter for month filtering as a number
+  monthFilter: number, // New parameter for month filtering as a number
+  selectedUser: String
 ) =>
   allTasks.filter((task) => {
     const matchesTimeFilter =
@@ -17,6 +17,9 @@ export const filteredTasks = (
     const matchesPriorityFilter =
       priorityFilter === 'All' || task.priority === priorityFilter
 
+    const selectedUserFilter =
+      selectedUser === 'All' || task.assignedTo === selectedUser
+
     // Month filtering logic
     const taskDate = new Date(task.createdAt)
     const taskMonth = taskDate.getMonth() // Get month as a number (0-11)
@@ -26,6 +29,7 @@ export const filteredTasks = (
       matchesTimeFilter &&
       matchesStatusFilter &&
       matchesPriorityFilter &&
-      matchesMonthFilter
+      matchesMonthFilter &&
+      selectedUserFilter
     )
   })
