@@ -2,7 +2,15 @@ import React from 'react'
 import DropDown from './DropDown'
 import TaskPage from '../Tasks/TaskPage'
 import AttendancePage from '../Attendance/AttendancePage'
-import { UserFetched } from '@/utils/SignUpInterface'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
+
 const UserSelection = ({
   type,
   Users,
