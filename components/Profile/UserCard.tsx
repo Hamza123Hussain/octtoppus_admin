@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import UpdateModal from './UpdateModal'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import deleteUser from '@/functions/AUTH/DeleteUser'

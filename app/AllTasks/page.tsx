@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../utils/Redux/Store/Store'
-import { UserFetched } from '@/utils/SignUpInterface'
 import Loader from '@/components/Loader'
 import UserSelection from '@/components/Layout/UserSelection'
 import AllTasksTable from '@/components/Tasks/AllTaskInfo'
 import Usertableview from '@/components/Layout/Usertableview'
 import { Allusers } from '@/functions/AUTH/AllUsers'
+import { UserFetched } from '@/utils/SignUpInterface'
 const AllTasks: React.FC = () => {
   const [Users, SetUserFetched] = useState<UserFetched[]>([])
   const user = useSelector((state: RootState) => state.user)
