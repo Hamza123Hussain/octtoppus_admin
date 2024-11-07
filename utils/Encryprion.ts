@@ -1,6 +1,5 @@
 import CryptoJS from 'crypto-js' // Import the crypto-js library for encryption and decryption
-import { UserData } from './SignUpInterface' // Import the UserData interface, which defines the structure of user data
-
+import { UserData } from './SignupInterface'
 // Get the secret key from environment variables (used for encryption/decryption)
 // The 'as string' ensures that TypeScript knows it's a string type
 const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY as string
