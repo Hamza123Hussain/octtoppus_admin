@@ -1,6 +1,13 @@
 import { Allusers } from '@/functions/AUTH/AllUsers'
 import { RootState } from '@/utils/Redux/Store/Store'
-import { UserFetched } from '@/utils/SignupInterface'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
 
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'

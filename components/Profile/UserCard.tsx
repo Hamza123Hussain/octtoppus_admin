@@ -3,7 +3,15 @@ import React from 'react'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import deleteUser from '@/functions/AUTH/DeleteUser'
-import { UserFetched } from '@/utils/SignUpInterface'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
+
 const UserCard = ({ User }: { User: UserFetched }) => {
   const Router = useRouter()
   const DeleteMe = async () => {
