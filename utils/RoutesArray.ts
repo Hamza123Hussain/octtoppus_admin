@@ -24,7 +24,7 @@ export const routes = [
   {
     id: 5,
     label: 'All Tasks',
-    href: '/Tasks',
+    href: '/AllTasks',
     Icon: FaTasks,
   },
   {
