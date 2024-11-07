@@ -1,6 +1,13 @@
-import { InputValues } from '@/utils/SignUpInterface'
 import axios from 'axios'
-
+export interface InputValues {
+  email: string
+  password: string
+  Name: string
+  Image: File | null
+  Salary: string
+  JobDescription: string
+  JobTitle: string
+}
 export const updateUser = async (userData: InputValues) => {
   try {
     const formData = new FormData()
