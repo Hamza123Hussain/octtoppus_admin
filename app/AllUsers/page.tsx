@@ -4,9 +4,18 @@ import UserCard from '@/components/Profile/UserCard'
 
 import { Allusers } from '@/functions/AUTH/AllUsers'
 import { RootState } from '@/utils/Redux/Store/Store'
-import { UserFetched } from '@/utils/SignUpInterface'
+
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+export interface UserFetched {
+  Email: string
+  JobTitle: string
+  Name: string
+  Salary: string
+  createdAt: string
+  imageUrl: string
+}
+
 const AllUserData = () => {
   const [Loading, SetLoading] = useState(false)
   const [UserFetched, SetUserFetched] = useState<UserFetched[]>([])
